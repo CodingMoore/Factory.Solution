@@ -35,6 +35,16 @@ else
     }
   }
   </ul>
+
+  @using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.MachineId)
+
+    @Html.Label("Add and Engineer")
+    @Html.DropDownList("EngineerId")
+
+    <input type="submit" value="Add" />
+}
   
 <p>@Html.ActionLink("Add an engineer", "AddEngineer", new { id = Model.MachineId })</p>
 <p>@Html.ActionLink("Back to list", "Index")</p>

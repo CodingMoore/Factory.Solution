@@ -48,6 +48,7 @@ namespace Factory.Controllers
           .Include(machine => machine.JoinEntries)
           .ThenInclude(join => join.Engineer)
           .FirstOrDefault(machine => machine.MachineId == id);
+      ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "EngineerName");
       return View(thisMachine);
     }
 
