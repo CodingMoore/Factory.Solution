@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Machine
+
+<h2>Edit Name</h2>
+
+<h4>@Html.DisplayFor(model => model.InstallDate)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.MachineId)
+
+    @Html.LabelFor(model => model.InstallDate)
+    @Html.EditorFor(model => model.InstallDate)
+
+    <input type="submit" value="Save" />
+}

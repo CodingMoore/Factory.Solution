@@ -17,5 +17,15 @@ h3 {
 h4 {
   text-align: center;
 }
-
+.btn {
+  background-color: white;
+  color: black;
+  outline-style: solid;
+  outline-color: black;
+  outline-width: .1rem;
+  padding-left: .75rem;
+  padding-right: .75rem;
+  padding-top: .3rem;
+  padding-bottom: .3rem;
+}
 

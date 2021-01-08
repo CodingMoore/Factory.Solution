@@ -52,23 +52,51 @@ namespace Factory.Controllers
       return View(thisMachine);
     }
 
-    public ActionResult Edit(int id)
+    // public ActionResult Edit(int id)
+    // {
+    //   var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+    //   // ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "EngineerName"); // ViewBag only transfers data from controller to view
+    //   return View(thisMachine);
+    // }
+    
+    // [HttpPost]
+    // public ActionResult Edit(Machine machine) //, int EngineerId
+    // {
+    //   // if (EngineerId != 0)
+    //   // {
+    //   //   _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = EngineerId, MachineId = machine.MachineId });
+    //   // }
+    //   _db.Entry(machine).State=EntityState.Modified;
+    //   _db.SaveChanges();
+    //   return RedirectToAction("Index");
+    // }
+
+    public ActionResult EditName(int id)
     {
       var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
-      // ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "EngineerName"); // ViewBag only transfers data from controller to view
       return View(thisMachine);
     }
-    
+
     [HttpPost]
-    public ActionResult Edit(Machine machine) //, int EngineerId
+    public ActionResult EditName(Machine machine)
     {
-      // if (EngineerId != 0)
-      // {
-      //   _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = EngineerId, MachineId = machine.MachineId });
-      // }
       _db.Entry(machine).State=EntityState.Modified;
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new {id = machine.MachineId});
+    }
+
+        public ActionResult EditDate(int id)
+    {
+      var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+      return View(thisMachine);
+    }
+
+    [HttpPost]
+    public ActionResult EditDate(Machine machine)
+    {
+      _db.Entry(machine).State=EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Details", new {id = machine.MachineId});
     }
 
     public ActionResult AddEngineer(int id)
@@ -113,12 +141,12 @@ namespace Factory.Controllers
     }
   
     [HttpPost]
-    public ActionResult DeleteEngineer(int joinId)
+    public ActionResult DeleteEngineer(int joinId, Machine machine)
     {
       var joinEntry = _db.EngineerMachine.FirstOrDefault(entry => entry.EngineerMachineId == joinId);
       _db.EngineerMachine.Remove(joinEntry);
       _db.SaveChanges();
-      return RedirectToAction("Details", new {id = joinId});
+      return RedirectToAction("Details", new {id = machine.MachineId});
     }
 
   }
