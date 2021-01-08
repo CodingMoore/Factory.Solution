@@ -14,8 +14,10 @@
     @Html.LabelFor(model => model.InstallDate)
     @Html.EditorFor(model => model.InstallDate)
 
-    @Html.Label("Select an Engineer")
-    @Html.DropDownList("EngineerId") //this is where we use the viewbag.
+
+//this is where we use the viewbag.
+    @* @Html.Label("Select an Engineer")
+    @Html.DropDownList("EngineerId")  *@
 
     <input type="submit" value="Add new machine" class="btn btn-default" />
 }
