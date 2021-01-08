@@ -99,12 +99,12 @@ namespace Factory.Controllers
       return RedirectToAction("Details", new {id = machine.MachineId});
     }
 
-    public ActionResult AddEngineer(int id)
-    {
-      var thisMachine = _db.Machines.FirstOrDefault(machines => machines.MachineId == id);
-      ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "EngineerName");
-      return View(thisMachine);
-    }
+    // public ActionResult AddEngineer(int id)
+    // {
+    //   var thisMachine = _db.Machines.FirstOrDefault(machines => machines.MachineId == id);
+    //   ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "EngineerName");
+    //   return View(thisMachine);
+    // }
     
     [HttpPost]
     public ActionResult AddEngineer(Machine machine, int EngineerId)

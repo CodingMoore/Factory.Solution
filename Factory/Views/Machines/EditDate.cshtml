@@ -4,16 +4,20 @@
 
 @model Factory.Models.Machine
 
-<h2>Edit Name</h2>
+<h2>Edit Installation Date</h2>
 
 <h4>@Html.DisplayFor(model => model.InstallDate)</h4>
 
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.MachineId)
+    @Html.HiddenFor(model => model.MachineName)
 
     @Html.LabelFor(model => model.InstallDate)
     @Html.EditorFor(model => model.InstallDate)
 
     <input type="submit" value="Save" />
 }
+
+<p>@Html.ActionLink("Back to Details", "Details", new {id = Model.MachineId})</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
