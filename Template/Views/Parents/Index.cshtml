@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Template.Models;
+@model List<Template.Models.Parent>;
+
+<h1>Parents</h1>
+
+@if (@Model.Count == 0)
+{
+  <h3>No Parents have been added yet!</h3>
+} 
+
+@foreach (Parent parent in Model)
+{
+  <li>@Html.ActionLink($"{parent.ParentName}", "Details", new { id = parent.ParentId })</li>
+}
+
+<p>@Html.ActionLink("Add new parent", "Create")</p>
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

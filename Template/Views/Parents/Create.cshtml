@@ -1,0 +1,24 @@
+  
+@{
+  Layout = "_Layout";
+}
+
+@model Template.Models.Parent
+
+<h4>Add a new Parent</h4>
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.ParentName)
+    @Html.TextBoxFor(model => model.ParentName)
+    
+    @Html.LabelFor(model => model.StartDate)
+    @Html.EditorFor(model => model.StartDate)
+    @* @Html.TextBoxFor(model => model.StartDate, new { @type = "date"}) *@
+
+    <input type="submit" value="Add new Parent" />
+}
+<p>@Html.ActionLink("Show all Parents", "Index")</p> 
+
+
+
+

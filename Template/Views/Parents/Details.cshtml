@@ -1,0 +1,29 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Template.Models.Parent;
+
+<h2>PARENT Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.ParentName): @Html.DisplayFor(model => model.ParentName)</h3>
+<h3>@Html.DisplayNameFor(model => model.StartDate): @Html.DisplayFor(model => model.StartDate)</h3>
+
+@if(@Model.JoinEntries.Count == 0)
+{
+  <p>This PARENT does not contain any CHILDS</p>
+}
+else
+{
+  <h4>CHILDS the PARENT contains:</h4>
+  <ul>
+  @foreach(var join in Model.JoinEntries)
+  {
+    <li>@join.Child.ChildName</li>
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to Parent", "Index")</p>
+<p>@Html.ActionLink("Edit Parent", "Edit", new { id = Model.ParentId })</p>
+<p>@Html.ActionLink("Delete Parent", "Delete", new { id = Model.ParentId })</p>

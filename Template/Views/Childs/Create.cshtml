@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Template.Models.Child  //this is where we get the 'model' which represents Child class/constructor.
+
+<h4>Add a new Child</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.ChildName)
+    @Html.TextBoxFor(model => model.ChildName)
+
+    @Html.Label("Select Parent")
+    @Html.DropDownList("ParentId") //this is where we use the viewbag.
+
+    <input type="submit" value="Add new child" class="btn btn-default" />
+}
+<p>@Html.ActionLink("Show all childs", "Index")</p>
