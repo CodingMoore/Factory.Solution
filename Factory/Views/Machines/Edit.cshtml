@@ -2,18 +2,18 @@
   Layout = "_Layout";
 }
 
-@model Factory.Models.Child
+@model Factory.Models.Machine
 
 <h2>Edit</h2>
 
-<h4>Edit this CHILD's info: @Html.DisplayFor(model => model.ChildName)</h4>
+<h4>Edit this machine's info: @Html.DisplayFor(model => model.MachineName)</h4>
 
 @using (Html.BeginForm())
 {
-    @Html.HiddenFor(model => model.ChildId)
+    @Html.HiddenFor(model => model.MachineId)
 
-    @Html.LabelFor(model => model.ChildName)
-    @Html.EditorFor(model => model.ChildName)
+    @Html.LabelFor(model => model.MachineName)
+    @Html.EditorFor(model => model.MachineName)
 @* 
     @Html.Label("Select an Engineer")
     @Html.DropDownList("EngineerId") *@ 
