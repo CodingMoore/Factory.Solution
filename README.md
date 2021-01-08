@@ -1,15 +1,18 @@
-# **Template.Solution**
-Project Initiated: 2021-01-04<br>
-Updated: 2021-01-04f
+# **Factory.Solution**
+Project Initiated: 2021-01-08<br>
+Updated: 2021-01-08
 
 ## **Project Description**
 
-This project was created to help us further our knowledge with using join statements to help connect tables in our database. We also were able to get additional practice with using many to many relationships with our tables in our datababse. This application is a univeristy registrar that helps keep track of students and courses. Here is a breakdown of the features it has, their functionality, and their benefits.
+This project was created to help us further our knowledge with using join statements to help connect tables in our database. We are also practicing with using many to many relationships within our application and database tables. This application is designed to help a factory owner keep track of the machines used in their factory(s) and the engineers that maintain these machines.  The User Story is below.
 
 //USER STORIES PUT IN TABLE (optional)
-* As a registrar, you will be able to enter a student, to help keep track of all students enrolled at this University. The student will be able to provide their name and their date of enrollment.
-* As a registrar, you will be able to enter a course, so you can keep track of all of the courses the University offers. You should be able to provide a course name and a course number (ex. HIST100).
-* As a registrar, you will to be able to assign students to a course, so that teachers know which students are in their course. A course can have many students and a student can take many courses at the same time.
+* As the factory manager, I need to be able to see a list of all engineers, and I need to be able to see a list of all machines.
+* As the factory manager, I need to be able to select a engineer, see their details, and see a list of all machines that engineer is licensed to repair. I also need to be able to select a machine, see its details, and see a list of all engineers licensed to repair it.
+* As the factory manager, I need to add new engineers to our system when they are hired. I also need to add new machines to our system when they are installed.
+* As the factory manager, I should be able to add new machines even if no engineers are employed. I should also be able to add new engineers even if no machines are installed
+* As the factory manager, I need to be able to add or remove machines that a specific engineer is licensed to repair. I also need to be able to modify this relationship from the other side, and add or remove engineers from a specific machine.
+* As a factory manager, I should be able to navigate to a splash page that lists all engineers and machines. Users should be able to click on an individual engineer or machine to see all the engineers/machines that belong to it.
 
 
 
@@ -108,29 +111,29 @@ Then open MySQL Workbench and select the Local instance 3306 server. You will ne
 ### **Install/Setup Project** ###
 
 **Option 1** (download zip file)
-1) Copy and paste the following GitHub project link into your web browser's url bar and hit enter/return. https://github.com/RMGit-it/Template.Solution.git
+1) Copy and paste the following GitHub project link into your web browser's url bar and hit enter/return. https://github.com/RMGit-it/Factory.Solution.git
 2) Download a .zip copy the repository by clicking on the large green "Code" button near the upper right corner of the screen.
 3) Right click the .zip file and extract(unzip) it's contents.
-4) Open your computer's terminal/console, and navigate to folder called "__Template.Solution__". 
+4) Open your computer's terminal/console, and navigate to folder called "__Factory.Solution__". 
 
 
 **Option 2** (via git console/terminal)
 1) Open your Git enabled terminal/console and navigate to a directory that you wish to download this project to.
 2) Type the following line of code into your terminal/console to automatically download the project to your current direcory and hit return/enter
 
-    <code>git clone https://github.com/RMGit-it/Template.Solution.git</code>
+    <code>git clone https://github.com/RMGit-it/Factory.Solution.git</code>
 
-3) Once the project has finished downloading, use the terminal/console to navigate to the "__Template.Solution__" folder of the project.
+3) Once the project has finished downloading, use the terminal/console to navigate to the "__Factory.Solution__" folder of the project.
 
 
 **Setup Database Connection**
 
-Create a new file in the root directory of the __Template.Solution/Template__ directory named "appsettings.json".  Copy and past the following code inside of the file.
+Create a new file in the root directory of the __Factory.Solution/Factory__ directory named "appsettings.json".  Copy and past the following code inside of the file.
 
 ```
 {
   "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;database=Template;uid=YourId;pwd=YourPassword;"
+      "DefaultConnection": "Server=localhost;Port=3306;database=randel_moore_factory;uid=YourId;pwd=YourPassword;"
   }
 }
 ```
@@ -171,8 +174,8 @@ REPLACE WITH YOUR PROJECT DATABASE
 13 - Then delete these instuctions! 
 
 ```
-CREATE DATABASE  IF NOT EXISTS `template` 
-USE `template`;
+CREATE DATABASE  IF NOT EXISTS `randel_moore_factory` 
+USE `randel_moore_factory`;
 
 DROP TABLE IF EXISTS `__efmigrationshistory`;
 CREATE TABLE `__efmigrationshistory` (
@@ -230,14 +233,15 @@ There are no known bugs
 * dotnet script, REPL
   
 ## **Authors and Contributors**
-Authored by: YOUR NAME
+Authored by: Randel Moore
 
 ## **Contact**
-YOUR NAME AND EMAIL
+Randel Moore
+RMGit.it@gmail.com
 
 ## **License**
 
 GPLv3
 
-Copyright © 2020 YOUR NAME
+Copyright © 2020 Randel Moore
 

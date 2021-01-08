@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Machine  //this is where we get the 'model' which represents Machine class/constructor.
+
+<h4>Add a new Machine</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.MachineName)
+    @Html.TextBoxFor(model => model.MachineName)
+
+    @Html.Label("Select an Engineer")
+    @Html.DropDownList("EngineerId") //this is where we use the viewbag.
+
+    <input type="submit" value="Add new machine" class="btn btn-default" />
+}
+<p>@Html.ActionLink("Show all machines", "Index")</p>
