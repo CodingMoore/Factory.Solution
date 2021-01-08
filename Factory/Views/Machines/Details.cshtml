@@ -43,7 +43,7 @@ else
     @Html.Label("Add and Engineer")
     @Html.DropDownList("EngineerId")
 
-    <input type="submit" value="Add" />
+    <input type="submit" value="Add" formaction=@Url.Action("AddEngineer") formmethod="post"/>
 }
   
 <p>@Html.ActionLink("Add an engineer", "AddEngineer", new { id = Model.MachineId })</p>
