@@ -6,7 +6,7 @@
 
 <h2>Machine Details</h2>
 <hr />
-<h3>@Html.DisplayNameFor(model => model.MachineName): @Html.DisplayFor(model => model.MachineName)</h3> @Html.ActionLink("Edit Name", "EditName", "Machines", new {id = Model.MachineId}, new { @class = "btn" })
+<h3>@Html.DisplayNameFor(model => model.MachineName): @Html.DisplayFor(model => model.MachineName)</h3> @Html.ActionLink("Edit Info", "EditInfo", "Machines", new {id = Model.MachineId}, new { @class = "btn" })
 <h3>@Html.DisplayNameFor(model => model.InstallDate): @Html.DisplayFor(model => model.InstallDate)</h3> @Html.ActionLink("Edit Date", "EditDate", "Machines", new {id = Model.MachineId}, new { @class = "btn" })
 
 @if(Model.JoinEntries.Count == 0)
@@ -24,7 +24,7 @@ else
   </ul> *@
 }
 
-  <ul>
+<ul>
   @foreach(var join in Model.JoinEntries)
   {
     <li>@join.Engineer.EngineerName</li>
@@ -35,18 +35,18 @@ else
       <input type="submit" value="Delete"/>
     }
   }
-  </ul>
+</ul>
 
-  @using (Html.BeginForm("AddEngineer", "Machines"))
+@using (Html.BeginForm("AddEngineer", "Machines"))
 {
-    @Html.HiddenFor(model => model.MachineId)
+  @Html.HiddenFor(model => model.MachineId)
 
-    @Html.Label("Add and Engineer")
-    @Html.DropDownList("EngineerId")
+  @Html.Label("Add an Engineer")
+  @Html.DropDownList("EngineerId")
 
-    <input type="submit" value="Add"/>
+  <input type="submit" value="Add"/>
 
-    @* <input type="submit" value="Add" formaction=@Url.Action("AddEngineer") formmethod="post"/> *@
+  @* <input type="submit" value="Add" formaction=@Url.Action("AddEngineer") formmethod="post"/> *@
 }
   
 @* <p>@Html.ActionLink("Add an engineer", "AddEngineer", new { id = Model.MachineId })</p> *@

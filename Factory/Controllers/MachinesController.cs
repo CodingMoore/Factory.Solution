@@ -71,14 +71,14 @@ namespace Factory.Controllers
     //   return RedirectToAction("Index");
     // }
 
-    public ActionResult EditName(int id)
+    public ActionResult EditInfo(int id)
     {
       var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
       return View(thisMachine);
     }
 
     [HttpPost]
-    public ActionResult EditName(Machine machine)
+    public ActionResult EditInfo(Machine machine)
     {
       _db.Entry(machine).State=EntityState.Modified;
       _db.SaveChanges();

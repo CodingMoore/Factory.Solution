@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer
+
+<h4>Edit Start Date</h4>
+
+<h4>@Html.DisplayFor(model => model.StartDate)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.EngineerId)
+    @Html.HiddenFor(model => model.EngineerName)
+
+    @Html.LabelFor(model => model.StartDate)
+    @Html.EditorFor(model => model.StartDate)
+
+    <input type="submit" value="Edit" />
+}
+
+<p>@Html.ActionLink("Back to Details", "Details", new {id = Model.EngineerId})</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

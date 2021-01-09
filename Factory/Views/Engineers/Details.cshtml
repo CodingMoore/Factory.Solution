@@ -6,8 +6,8 @@
 
 <h2>Engineer Details</h2>
 <hr />
-<h3>@Html.DisplayNameFor(model => model.EngineerName): @Html.DisplayFor(model => model.EngineerName)</h3>
-<h3>@Html.DisplayNameFor(model => model.StartDate): @Html.DisplayFor(model => model.StartDate)</h3>
+<h3>@Html.DisplayNameFor(model => model.EngineerName): @Html.DisplayFor(model => model.EngineerName)</h3> @Html.ActionLink("Edit Info", "EditInfo", "Engineers", new {id = Model.EngineerId}, new { @class = "btn" })
+<h3>@Html.DisplayNameFor(model => model.StartDate): @Html.DisplayFor(model => model.StartDate)</h3> @Html.ActionLink("Edit Date", "EditDate", "Engineers", new {id = Model.EngineerId}, new { @class = "btn" })
 
 @if(@Model.JoinEntries.Count == 0)
 {
@@ -16,14 +16,34 @@
 else
 {
   <h4>Machines that this engineer is certified for:</h4>
-  <ul>
+}
+
+<ul>
   @foreach(var join in Model.JoinEntries)
   {
     <li>@join.Machine.MachineName</li>
+    @using (Html.BeginForm("DeleteMachine", "Engineers"))
+    {
+      @Html.Hidden("joinId", @join.EngineerMachineId)
+      @Html.HiddenFor(model => model.EngineerId)
+      <input type="submit" value="Delete"/>
+    }
   }
-  </ul>
+</ul>
+
+@using (Html.BeginForm("AddMachine", "Engineers"))
+{
+  @Html.HiddenFor(model => model.EngineerId)
+
+  @Html.Label("Add a Machine")
+  @Html.DropDownList("MachineId")
+
+  <input type="submit" value="Add"/>
+
+  @* <input type="submit" value="Add" formaction=@Url.Action("AddMachine") formmethod="post"/> *@
 }
 
-<p>@Html.ActionLink("Back to Engineers", "Index")</p>
-<p>@Html.ActionLink("Edit Engineer", "Edit", new { id = Model.EngineerId })</p>
+
+<p>@Html.ActionLink("Back to Engineer List", "Index")</p>
 <p>@Html.ActionLink("Delete Engineer", "Delete", new { id = Model.EngineerId })</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
