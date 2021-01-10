@@ -14,7 +14,7 @@
     @Html.HiddenFor(model => model.MachineName)
 
     @Html.LabelFor(model => model.InstallDate)
-    @Html.EditorFor(model => model.InstallDate)
+    @Html.TextBoxFor(model => model.InstallDate, "{0:yyyy-MM-dd}", new { @type = "date" })
 
     <input type="submit" value="Save" />
 }

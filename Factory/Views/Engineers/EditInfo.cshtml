@@ -4,7 +4,7 @@
 
 @model Factory.Models.Engineer
 
-<h4>Edit Info</h4>
+<h2>Edit Engineer Info</h2>
 
 <h4>@Html.DisplayFor(model => model.EngineerName)</h4>
 
@@ -16,7 +16,7 @@
     @Html.LabelFor(model => model.EngineerName)
     @Html.EditorFor(model => model.EngineerName)
 
-    <input type="submit" value="Edit" />
+    <input type="submit" value="Save" />
 }
 
 <p>@Html.ActionLink("Back to Details", "Details", new {id = Model.EngineerId})</p>

@@ -7,7 +7,7 @@
 <h2>Engineer Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.EngineerName): @Html.DisplayFor(model => model.EngineerName)</h3> @Html.ActionLink("Edit Info", "EditInfo", "Engineers", new {id = Model.EngineerId}, new { @class = "btn" })
-<h3>@Html.DisplayNameFor(model => model.StartDate): @Html.DisplayFor(model => model.StartDate)</h3> @Html.ActionLink("Edit Date", "EditDate", "Engineers", new {id = Model.EngineerId}, new { @class = "btn" })
+<h3>@Html.DisplayNameFor(model => model.StartDate): @Model.StartDate.ToString("MM-dd-yyyy")</h3> @Html.ActionLink("Edit Date", "EditDate", "Engineers", new {id = Model.EngineerId}, new { @class = "btn" })
 
 @if(@Model.JoinEntries.Count == 0)
 {
@@ -36,7 +36,7 @@ else
   @Html.HiddenFor(model => model.EngineerId)
 
   @Html.Label("Add a Machine")
-  @Html.DropDownList("MachineId")
+  @Html.DropDownList("MachineId", "*select*")
 
   <input type="submit" value="Add"/>
 
