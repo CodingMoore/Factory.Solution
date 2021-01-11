@@ -156,6 +156,9 @@ You can now type the follow code to launch the program...
 
 The program should launch using your default web browser at URL: localhost:5000.
 
+## **SQL Schema Diagram**
+<img src="./readme_assests/factory_schema_diagram.PNG" alt="Factor Schema" style="float: left" />
+
 ## **SQL Schema**
 
 ```
