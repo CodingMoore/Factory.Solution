@@ -9,8 +9,8 @@ namespace Factory.Controllers
 {
   public class HomeController : Controller
   {
-    private readonly FactoryContext _db; // Defining the Database as Factory
-    public HomeController(FactoryContext db) //constructor for the controller 
+    private readonly FactoryContext _db;
+    public HomeController(FactoryContext db)
     {
       _db = db;
     }

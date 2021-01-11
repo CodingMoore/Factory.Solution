@@ -16,11 +16,6 @@ namespace Factory.Controllers
       _db = db;
     }
 
-    // public ActionResult Index()
-    // {
-    //   return View(_db.Machines.ToList());
-    // }
-
     public ActionResult Create()
     {
       return View();
@@ -43,25 +38,6 @@ namespace Factory.Controllers
       return View(thisMachine);
     }
 
-    // public ActionResult Edit(int id)
-    // {
-    //   var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
-    //   // ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "EngineerName"); // ViewBag only transfers data from controller to view
-    //   return View(thisMachine);
-    // }
-    
-    // [HttpPost]
-    // public ActionResult Edit(Machine machine) //, int EngineerId
-    // {
-    //   // if (EngineerId != 0)
-    //   // {
-    //   //   _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = EngineerId, MachineId = machine.MachineId });
-    //   // }
-    //   _db.Entry(machine).State=EntityState.Modified;
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
-
     public ActionResult Edit(int id)
     {      
       var thisMachine = _db.Machines
@@ -79,27 +55,6 @@ namespace Factory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Details", new {id = machine.MachineId});
     }
-
-    //     public ActionResult EditDate(int id)
-    // {
-    //   var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
-    //   return View(thisMachine);
-    // }
-
-    // [HttpPost]
-    // public ActionResult EditDate(Machine machine)
-    // {
-    //   _db.Entry(machine).State=EntityState.Modified;
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Details", new {id = machine.MachineId});
-    // }
-
-    // public ActionResult AddEngineer(int id)
-    // {
-    //   var thisMachine = _db.Machines.FirstOrDefault(machines => machines.MachineId == id);
-    //   ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "EngineerName");
-    //   return View(thisMachine);
-    // }
     
     [HttpPost]
     public ActionResult AddEngineer(Machine machine, int EngineerId)

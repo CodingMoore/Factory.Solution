@@ -17,7 +17,6 @@ namespace Factory.Models
     [DisplayName("Install Date")]
     [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
     public DateTime InstallDate { get; set; }
-    // public string InstallDate { get; set; }
 
     [DisplayName("Machine Name")]
     public string MachineName { get; set; }
