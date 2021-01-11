@@ -19,10 +19,10 @@ namespace Factory.Controllers
       _db = db;
     }
 
-    public ActionResult Index()
-    {
-      return View(_db.Machines.ToList());
-    }
+    // public ActionResult Index()
+    // {
+    //   return View(_db.Machines.ToList());
+    // }
 
     public ActionResult Create()
     {
@@ -48,7 +48,6 @@ namespace Factory.Controllers
           .Include(machine => machine.JoinEntries)
           .ThenInclude(join => join.Engineer)
           .FirstOrDefault(machine => machine.MachineId == id);
-      ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "EngineerName");
       return View(thisMachine);
     }
 
@@ -71,33 +70,37 @@ namespace Factory.Controllers
     //   return RedirectToAction("Index");
     // }
 
-    public ActionResult EditInfo(int id)
-    {
-      var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+    public ActionResult Edit(int id)
+    {      
+      var thisMachine = _db.Machines
+          .Include(machine => machine.JoinEntries)
+          .ThenInclude(join => join.Engineer)
+          .FirstOrDefault(machine => machine.MachineId == id);
+      ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "EngineerName");
       return View(thisMachine);
     }
 
     [HttpPost]
-    public ActionResult EditInfo(Machine machine)
+    public ActionResult Edit(Machine machine)
     {
       _db.Entry(machine).State=EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Details", new {id = machine.MachineId});
     }
 
-        public ActionResult EditDate(int id)
-    {
-      var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
-      return View(thisMachine);
-    }
+    //     public ActionResult EditDate(int id)
+    // {
+    //   var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+    //   return View(thisMachine);
+    // }
 
-    [HttpPost]
-    public ActionResult EditDate(Machine machine)
-    {
-      _db.Entry(machine).State=EntityState.Modified;
-      _db.SaveChanges();
-      return RedirectToAction("Details", new {id = machine.MachineId});
-    }
+    // [HttpPost]
+    // public ActionResult EditDate(Machine machine)
+    // {
+    //   _db.Entry(machine).State=EntityState.Modified;
+    //   _db.SaveChanges();
+    //   return RedirectToAction("Details", new {id = machine.MachineId});
+    // }
 
     // public ActionResult AddEngineer(int id)
     // {
@@ -137,7 +140,8 @@ namespace Factory.Controllers
       var thisMachine = _db.Machines.FirstOrDefault(machines => machines.MachineId == id);
       _db.Machines.Remove(thisMachine);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Index", "Home");
+      // return RedirectToAction("Index");
     }
   
     [HttpPost]
@@ -147,6 +151,7 @@ namespace Factory.Controllers
       _db.EngineerMachine.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Details", new {id = machine.MachineId});
+      
     }
 
   }

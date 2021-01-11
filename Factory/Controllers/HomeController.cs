@@ -18,10 +18,12 @@ namespace Factory.Controllers
     [HttpGet("/")]
     public ActionResult Index()
     {
-      // List<Machine> machineList = _db.Machines;
-      // List<Engineer> engineerList = _db.Engineers;
+      List<Machine> machineList = _db.Machines.ToList();
+      List<Engineer> engineerList = _db.Engineers.ToList();
+      ViewBag.MachineList = machineList;
+      ViewBag.EngineerList = engineerList;
       ViewBag.Machines = _db.Machines;
-      ViewBag.Engineers = _db.Engineers;;
+      ViewBag.Engineers = _db.Engineers;
       return View();
     }
 

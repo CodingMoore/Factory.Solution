@@ -4,24 +4,78 @@
 
 @model Factory.Models.Machine
 
-<h2>Edit</h2>
-
-<h4>@Html.DisplayFor(model => model.MachineName)</h4>
+<h2>Edit Machine Details</h2>
 
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.MachineId)
+    @* @Html.HiddenFor(model => model.InstallDate) *@
 
     @Html.LabelFor(model => model.MachineName)
     @Html.EditorFor(model => model.MachineName)
+    
+    @* @Html.HiddenFor(model => model.MachineId)
+    @Html.HiddenFor(model => model.MachineName) *@
 
     @Html.LabelFor(model => model.InstallDate)
-    @Html.EditorFor(model => model.InstallDate)
+    @Html.TextBoxFor(model => model.InstallDate, "{0:yyyy-MM-dd}", new { @type = "date" })
 
-    @* @Html.Label("Select an Engineer")
-    @Html.DropDownList("EngineerId") *@
+    <br>
+    <br>
 
-    <input type="submit" value="Save" />
+    <input type="submit" value="Save Details" />
 }
 
-<p>@Html.ActionLink("Back to list", "Index")</p>
+@* @Html.ActionLink("Save Updates", "Edit", "Machines", new {id = Model.MachineId}, new { @class = "btn" }) *@
+
+<br>
+<br>
+
+<h2>Add/Remove Machine Engineers</h2>
+
+@if(Model.JoinEntries.Count == 0)
+{
+  <p>This machine does not have any certified engineers.</p>
+}
+else
+{
+  <h4>Engineers certified for this machine:</h4>
+}
+
+<ul>
+  @foreach(var join in Model.JoinEntries)
+  {
+    <li>@join.Engineer.EngineerName</li>
+    @using (Html.BeginForm("DeleteEngineer", "Machines"))
+    {
+      @Html.Hidden("joinId", @join.EngineerMachineId)
+      @Html.HiddenFor(model => model.MachineId)
+      <input type="submit" value="Delete"/>
+    }
+  }
+</ul>
+
+@using (Html.BeginForm("AddEngineer", "Machines"))
+{
+  @Html.HiddenFor(model => model.MachineId)
+
+  @Html.Label("Add an Engineer")
+  @Html.DropDownList("EngineerId", "*select*")
+  
+
+  <input type="submit" value="Add"/>
+
+  @* <input type="submit" value="Add" formaction=@Url.Action("AddEngineer") formmethod="post"/> *@
+}
+
+<br>
+<br>
+
+@* <p>@Html.ActionLink("Back to Machine List", "Index")</p> *@
+<p>@Html.ActionLink("Delete Machine", "Delete", new { id = Model.MachineId }, new { @class = "btn" })</p>
+
+<br>
+<br>
+
+<p>@Html.ActionLink("Back to Details", "Details", new { id = Model.MachineId })</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

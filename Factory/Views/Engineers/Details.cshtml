@@ -43,7 +43,7 @@ else
   @* <input type="submit" value="Add" formaction=@Url.Action("AddMachine") formmethod="post"/> *@
 }
 
-
-<p>@Html.ActionLink("Back to Engineer List", "Index")</p>
+<br>
+@* <p>@Html.ActionLink("Back to Engineer List", "Index")</p> *@
 <p>@Html.ActionLink("Delete Engineer", "Delete", new { id = Model.EngineerId })</p>
 <p>@Html.ActionLink("Home", "Index", "Home")</p>

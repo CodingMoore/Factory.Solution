@@ -116,7 +116,8 @@ namespace Factory.Controllers
       var thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
       _db.Engineers.Remove(thisEngineer);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Index", "Home");
+      // return RedirectToAction("Index");
     }
 
     [HttpPost]

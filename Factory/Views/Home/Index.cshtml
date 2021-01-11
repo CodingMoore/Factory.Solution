@@ -7,16 +7,33 @@
 <h1>Dr. Sillystringz's Machine and Engineer Management System!</h1>
 
 <h3>Engineers</h3>
+
+<p>@Html.ActionLink("Add a new Engineer", "Create", "Engineers")</p>
+
+@if(ViewBag.EngineerList.Count == 0)
+{
+  <h4>No engineers have been added yet!</h4>
+} 
+
 @foreach (Engineer engineer in ViewBag.Engineers)
 {
   <li>@Html.ActionLink($"{engineer.EngineerName}", "Details", "Engineers", new { id = engineer.EngineerId })</li>
 }
+
 <h3>Machines</h3>
+
+<p>@Html.ActionLink("Add a new Machine", "Create", "Machines")</p>
+
+@if(ViewBag.MachineList.Count == 0)
+{
+  <h4>No machines have been added yet!</h4>
+} 
+
 @foreach (Machine machine in ViewBag.Machines)
 {
   <li>@Html.ActionLink($"{machine.MachineName}", "Details", "Machines", new { id = machine.MachineId })</li>
 }
 
-
-<p>@Html.ActionLink("See All Machines", "Index", "Machines")</p>
-<p>@Html.ActionLink("See All Engineers", "Index", "Engineers")</p>
+<br>
+@* <p>@Html.ActionLink("See All Machines", "Index", "Machines")</p>
+<p>@Html.ActionLink("See All Engineers", "Index", "Engineers")</p> *@
