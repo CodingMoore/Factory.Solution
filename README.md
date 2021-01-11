@@ -1,6 +1,6 @@
 # **Factory.Solution**
 Project Initiated: 2021-01-08<br>
-Updated: 2021-01-08
+Updated: 2021-01-011
 
 ## **Project Description**
 
@@ -163,15 +163,17 @@ CREATE DATABASE  IF NOT EXISTS `randel_moore_factory`;
 USE `randel_moore_factory`;
 
 DROP TABLE IF EXISTS `__efmigrationshistory`;
-
 CREATE TABLE `__efmigrationshistory` (
   `MigrationId` varchar(95) NOT NULL,
   `ProductVersion` varchar(32) NOT NULL,
   PRIMARY KEY (`MigrationId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS `engineermachine`;
+LOCK TABLES `__efmigrationshistory` WRITE;
+INSERT INTO `__efmigrationshistory` VALUES ('20210108173230_Initial','2.2.4-servicing-10062'),('20210108180809_Add_Machine_Istall_Date','2.2.4-servicing-10062'),('20210110203536_DateTimeToStringTest','2.2.4-servicing-10062'),('20210110204421_StringToDateTimeReset','2.2.4-servicing-10062');
+UNLOCK TABLES;
 
+DROP TABLE IF EXISTS `engineermachine`;
 CREATE TABLE `engineermachine` (
   `EngineerMachineId` int NOT NULL AUTO_INCREMENT,
   `EngineerId` int NOT NULL,
@@ -181,25 +183,35 @@ CREATE TABLE `engineermachine` (
   KEY `IX_EngineerMachine_MachineId` (`MachineId`),
   CONSTRAINT `FK_EngineerMachine_Engineers_EngineerId` FOREIGN KEY (`EngineerId`) REFERENCES `engineers` (`EngineerId`) ON DELETE CASCADE,
   CONSTRAINT `FK_EngineerMachine_Machines_MachineId` FOREIGN KEY (`MachineId`) REFERENCES `machines` (`MachineId`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+LOCK TABLES `engineermachine` WRITE;
+INSERT INTO `engineermachine` VALUES (51,13,10),(52,13,11),(53,5,8),(54,5,9),(55,5,10),(56,5,11),(57,5,12),(58,6,10),(61,9,12),(62,9,8),(63,10,9),(64,10,11),(65,13,12),(66,14,9),(67,14,11);
+UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `engineers`;
-
 CREATE TABLE `engineers` (
   `EngineerId` int NOT NULL AUTO_INCREMENT,
   `StartDate` datetime(6) NOT NULL,
   `EngineerName` longtext,
   PRIMARY KEY (`EngineerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+LOCK TABLES `engineers` WRITE;
+INSERT INTO `engineers` VALUES (5,'2021-01-08 00:00:00.000000','Kiki Smith'),(6,'2020-11-20 00:00:00.000000','Jackson Pollock'),(9,'2020-06-10 00:00:00.000000','Bob Ross'),(10,'2021-01-02 00:00:00.000000','Yayoi Kusama'),(13,'2020-07-19 00:00:00.000000','Marilyn Minter'),(14,'2020-06-20 00:00:00.000000','Rick Bartow');
+UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `machines`;
-
 CREATE TABLE `machines` (
   `MachineId` int NOT NULL AUTO_INCREMENT,
   `MachineName` longtext,
-  `InstallDate` datetime(6) NOT NULL DEFAULT '0001-01-01 00:00:00.000000',
+  `InstallDate` datetime(6) NOT NULL,
   PRIMARY KEY (`MachineId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+LOCK TABLES `machines` WRITE;
+INSERT INTO `machines` VALUES (8,'The Fluff-If-Fier','2020-11-01 00:00:00.000000'),(9,'The Inspect-O-Matic','2020-09-24 00:00:00.000000'),(10,'The Dimpler','2021-01-01 00:00:00.000000'),(11,'The Shineification Machine','2020-12-19 00:00:00.000000'),(12,'Hal 9000','2001-01-01 00:00:00.000000');
+UNLOCK TABLES;
 ```
 ## **Usage / Examples**
 
