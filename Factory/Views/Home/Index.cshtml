@@ -2,6 +2,21 @@
   Layout = "_Layout";
 }
 
-<h1>Welcome to Dr. Sillystringz's Machine and Engineer Management System!</h1>
+@using Factory.Models;
+
+<h1>Dr. Sillystringz's Machine and Engineer Management System!</h1>
+
+<h3>Engineers</h3>
+@foreach (Engineer engineer in ViewBag.Engineers)
+{
+  <li>@Html.ActionLink($"{engineer.EngineerName}", "Details", "Engineers", new { id = engineer.EngineerId })</li>
+}
+<h3>Machines</h3>
+@foreach (Machine machine in ViewBag.Machines)
+{
+  <li>@Html.ActionLink($"{machine.MachineName}", "Details", "Machines", new { id = machine.MachineId })</li>
+}
+
+
 <p>@Html.ActionLink("See All Machines", "Index", "Machines")</p>
 <p>@Html.ActionLink("See All Engineers", "Index", "Engineers")</p>
