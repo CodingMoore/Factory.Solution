@@ -26,7 +26,7 @@ namespace Factory.Controllers
     {
       _db.Engineers.Add(engineer);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new {id = engineer.EngineerId});
     }
 
     public ActionResult Details(int id)
