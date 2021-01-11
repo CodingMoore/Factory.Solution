@@ -7,15 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Factory.Controllers
 {
-  // [Authorize]
   public class MachinesController : Controller
   {
     private readonly FactoryContext _db;
-    // private readonly UserManager<ApplicationUser> _userManager;
 
     public MachinesController(FactoryContext db)
     {
-      // _userManager = userManager;
       _db = db;
     }
 
@@ -26,7 +23,6 @@ namespace Factory.Controllers
 
     public ActionResult Create()
     {
-      // ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "EngineerName");
       return View();
     }
 
@@ -34,10 +30,6 @@ namespace Factory.Controllers
     public ActionResult Create(Machine machine)
     {
       _db.Machines.Add(machine);
-      // if (EngineerId != 0)
-      // {
-      //   _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = EngineerId, MachineId = machine.MachineId });
-      // }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
@@ -113,20 +105,16 @@ namespace Factory.Controllers
     public ActionResult AddEngineer(Machine machine, int EngineerId)
     {
       if (EngineerId != 0)
-      // Check if EngineerId is valid
       {
         var returnedJoin = _db.EngineerMachine.Any(join => join.MachineId == machine.MachineId && join.EngineerId == EngineerId);
-        // Check if "Any" of this relationship exists, returns a bool
         if (!returnedJoin) 
         {
-        // if the returnedJoin for that relationship if false, then add the relationship
           _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = EngineerId, MachineId = machine.MachineId });
         }
       }
       _db.SaveChanges();
       return RedirectToAction("Details", new {id = machine.MachineId});
     }   
-
 
     public ActionResult Delete(int id)
     {
@@ -141,7 +129,6 @@ namespace Factory.Controllers
       _db.Machines.Remove(thisMachine);
       _db.SaveChanges();
       return RedirectToAction("Index", "Home");
-      // return RedirectToAction("Index");
     }
   
     [HttpPost]
@@ -151,7 +138,6 @@ namespace Factory.Controllers
       _db.EngineerMachine.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Details", new {id = machine.MachineId});
-      
     }
 
   }

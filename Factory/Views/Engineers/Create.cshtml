@@ -1,4 +1,3 @@
-  
 @{
   Layout = "_Layout";
 }
@@ -6,17 +5,18 @@
 @model Factory.Models.Engineer
 
 <h2>Add a new Engineer</h2>
+
 @using (Html.BeginForm())
 {
     @Html.LabelFor(model => model.EngineerName)
     @Html.TextBoxFor(model => model.EngineerName)
-    
+
     @Html.LabelFor(model => model.StartDate)
-    @* @Html.EditorFor(model => model.StartDate) *@
     @Html.TextBoxFor(model => model.StartDate, new { @type = "date"})
 
-    <input type="submit" value="Add new Engineer" class="btn btn-default"/>
+    <input type="submit" value="Add new Engineer" class="btn btn-default" />
 }
+
 <br>
-@* <p>@Html.ActionLink("Show all Engineers", "Index")</p> *@
+
 <p>@Html.ActionLink("Home", "Index", "Home")</p>

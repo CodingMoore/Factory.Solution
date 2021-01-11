@@ -4,22 +4,69 @@
 
 @model Factory.Models.Engineer
 
-<h4>Edit an engineer</h4>
+<h2>Edit Engineer Details</h2>
+
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.EngineerId)
-    @* @Html.HiddenFor(model => model.StartDate) *@
 
     @Html.LabelFor(model => model.EngineerName)
     @Html.EditorFor(model => model.EngineerName)
 
-    @* @Html.DisplayNameFor(model => model.StartDate) 
-    @Html.EditorFor(model => model.StartDate) *@
-    
     @Html.LabelFor(model => model.StartDate)
-    @Html.EditorFor(model => model.StartDate)
-  
+    @Html.TextBoxFor(model => model.StartDate, "{0:yyyy-MM-dd}", new { @type = "date" })
 
-    <input type="submit" value="Edit" />
+    <br>
+    <br>
+
+    <input type="submit" value="Save Details" />
 }
-<p>@Html.ActionLink("Show all engineers", "Index")</p>
+
+<br>
+<br>
+
+<h2>Add/Remove Machines</h2>
+
+@if(Model.JoinEntries.Count == 0)
+{
+  <p>This engineer is not certified for any machines.</p>
+}
+else
+{
+  <h4>Machines that this engineer is certified for:</h4>
+}
+
+<ul>
+  @foreach(var join in Model.JoinEntries)
+  {
+    <li>@join.Machine.MachineName</li>
+    @using (Html.BeginForm("DeleteMachine", "Engineers"))
+    {
+      @Html.Hidden("joinId", @join.EngineerMachineId)
+      @Html.HiddenFor(model => model.EngineerId)
+      <input type="submit" value="Delete"/>
+    }
+  }
+</ul>
+
+@using (Html.BeginForm("AddMachine", "Engineers"))
+{
+  @Html.HiddenFor(model => model.EngineerId)
+
+  @Html.Label("Add a Machine")
+  @Html.DropDownList("MachineId", "*select*")
+  
+  <input type="submit" value="Add"/>
+
+}
+
+<br>
+<br>
+
+<p>@Html.ActionLink("Delete Engineer", "Delete", new { id = Model.EngineerId }, new { @class = "btn" })</p>
+
+<br>
+<br>
+
+<p>@Html.ActionLink("Back to Details", "Details", new { id = Model.EngineerId })</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

@@ -9,13 +9,9 @@
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.MachineId)
-    @* @Html.HiddenFor(model => model.InstallDate) *@
 
     @Html.LabelFor(model => model.MachineName)
     @Html.EditorFor(model => model.MachineName)
-    
-    @* @Html.HiddenFor(model => model.MachineId)
-    @Html.HiddenFor(model => model.MachineName) *@
 
     @Html.LabelFor(model => model.InstallDate)
     @Html.TextBoxFor(model => model.InstallDate, "{0:yyyy-MM-dd}", new { @type = "date" })
@@ -26,12 +22,10 @@
     <input type="submit" value="Save Details" />
 }
 
-@* @Html.ActionLink("Save Updates", "Edit", "Machines", new {id = Model.MachineId}, new { @class = "btn" }) *@
-
 <br>
 <br>
 
-<h2>Add/Remove Machine Engineers</h2>
+<h2>Add/Remove Engineers</h2>
 
 @if(Model.JoinEntries.Count == 0)
 {
@@ -62,16 +56,13 @@ else
   @Html.Label("Add an Engineer")
   @Html.DropDownList("EngineerId", "*select*")
   
-
   <input type="submit" value="Add"/>
 
-  @* <input type="submit" value="Add" formaction=@Url.Action("AddEngineer") formmethod="post"/> *@
 }
 
 <br>
 <br>
 
-@* <p>@Html.ActionLink("Back to Machine List", "Index")</p> *@
 <p>@Html.ActionLink("Delete Machine", "Delete", new { id = Model.MachineId }, new { @class = "btn" })</p>
 
 <br>
